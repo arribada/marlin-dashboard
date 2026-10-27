@@ -1,0 +1,73 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "ICES_AREAS_VISA_SIMPLE_5KM.1",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-4.0, 56.0],
+            [0.0, 56.0],
+            [0.0, 58.0],
+            [-4.0, 58.0],
+            [-4.0, 56.0]
+          ]
+        ]
+      },
+      "geometry_name": "Shape",
+      "properties": {
+        "OBJECTID_1": 1,
+        "OBJECTID": 1,
+        "Major_FA": "27",
+        "SubArea": "4",
+        "Division": "b",
+        "SubDivisio": null,
+        "Unit": " ",
+        "Area_Full": "27.4.b",
+        "Shape_Leng": 12.45,
+        "Area_27": "4.b"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ICES_AREAS_VISA_SIMPLE_5KM.2",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-8.0, 51.0],
+            [-4.0, 51.0],
+            [-4.0, 55.0],
+            [-8.0, 55.0],
+            [-8.0, 51.0]
+          ]
+        ]
+      },
+      "geometry_name": "Shape",
+      "properties": {
+        "OBJECTID_1": 2,
+        "OBJECTID": 2,
+        "Major_FA": "27",
+        "SubArea": "7",
+        "Division": "a",
+        "SubDivisio": null,
+        "Unit": " ",
+        "Area_Full": "27.7.a",
+        "Shape_Leng": 18.92,
+        "Area_27": "7.a"
+      }
+    }
+  ],
+  "totalFeatures": 2,
+  "numberMatched": 2,
+  "numberReturned": 2,
+  "timeStamp": "2026-05-21T00:00:00.000Z",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::4326"
+    }
+  }
+}

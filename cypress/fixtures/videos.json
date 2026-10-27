@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "vesselName": "FV Ocean Explorer",
+    "timestamp": "2025-06-26T14:23:15.000Z",
+    "duration": "00:02:34",
+    "type": "bycatch",
+    "species": "Harbour Porpoise",
+    "confidence": 94,
+    "transcript": "Large mammal spotted port side, appears to be harbour porpoise caught in net."
+  },
+  {
+    "id": 2,
+    "vesselName": "FV Sea Guardian",
+    "timestamp": "2025-06-26T12:45:30.000Z",
+    "duration": "00:01:18",
+    "type": "catch",
+    "species": "Atlantic Cod",
+    "confidence": 87,
+    "transcript": "Good catch of cod, approximately 15kg specimen."
+  },
+  {
+    "id": 3,
+    "vesselName": "FV Atlantic Dawn",
+    "timestamp": "2025-06-26T09:15:45.000Z",
+    "duration": "00:03:12",
+    "type": "bycatch",
+    "species": "Seal",
+    "confidence": 96,
+    "transcript": "Grey seal entangled in fishing net, crew working to release safely."
+  }
+]

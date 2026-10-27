@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Europe/London
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      NEXTAUTH_SECRET: ${{secrets.NEXTAUTH_SECRET}}
+      NEXTAUTH_URL: ${{secrets.NEXTAUTH_URL}}
+      NEXT_PUBLIC_BASE_URL: ${{secrets.NEXT_PUBLIC_BASE_URL}}
+      NEXTAUTH_SESSION_MAX_AGE: ${{secrets.NEXTAUTH_SESSION_MAX_AGE}}
+      NEXTAUTH_ADMIN_SESSION_MAX_AGE: ${{secrets.NEXTAUTH_ADMIN_SESSION_MAX_AGE}}
+      CYPRESS_BASE_URL: ${{secrets.CYPRESS_BASE_URL}}
+      UPSTASH_REDIS_REST_URL: ${{secrets.UPSTASH_REDIS_REST_URL}}
+      UPSTASH_REDIS_REST_TOKEN: ${{secrets.UPSTASH_REDIS_REST_TOKEN}}
+      LOGIN_RATE_LIMIT_COUNT: 1000
+      LOGIN_RATE_LIMIT_WINDOW: 5 m
+      NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}}
+      RECAPTCHA_SECRET_KEY: ${{secrets.RECAPTCHA_SECRET_KEY}}
+      ENABLE_TEST_LOGIN: true
+      AZURE_ACCOUNT_NAME: "AZURE_ACCOUNT_NAME"
+      AZURE_SIGNATURE: "AZURE_SIGNATURE"
+      EXPORT_STORAGE_PATH: /tmp/exports
+      DB_USER: ${{secrets.DB_USER}}
+      DB_PASS: ${{secrets.DB_PASS}}
+      DB_API_URL: ${{secrets.DB_API_URL}}
+      NEXT_PUBLIC_CARTO_API_KEY: ${{ secrets.NEXT_PUBLIC_CARTO_API_KEY }}
+
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Marlin app
+        run: npm run build
+
+      - name: Run Jest tests
+        run: npm run jest
+
+      - name: Run Cypress E2E tests
+        run: npm run cypress:e2e
+
+      - name: Run Cypress component tests
+        run: npm run cypress:component
+
+      - name: Upload Cypress artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-artifacts
+          path: |
+            cypress/screenshots
+            cypress/videos
+          retention-days: 7
+          if-no-files-found: ignore
